@@ -12,6 +12,7 @@ let maxChars = 200;
 function init() {
   editor.value = "";
   preview.value = "";
+  maxCharsInput.value = maxChars;
   onEditorUpdate();
 }
 
@@ -21,13 +22,13 @@ function updatePreview() {
 }
 
 function getTextCount() {
-  console.log(editor.value.replace(/<.*?>/g, '').length);
+  return editor.value.replace(/<.*?>/g, '').length;
 }
 
 function updateCountUI() {
   getTextCount();
   // update char count
-  charsCount = editor.value.length;
+  charsCount = getTextCount();
   // update count paragraph
   countParagraph.innerText = `${charsCount}/${maxChars}`;
   // update meter
@@ -49,4 +50,4 @@ function onEditorUpdate() {
 editor.addEventListener("input", onEditorUpdate);
 maxCharsInput.addEventListener("input", onMaxCharsUpdate);
 
-window.addEventListener("load", updateCountUI);
+window.addEventListener("load", init);
