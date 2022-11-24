@@ -1,12 +1,13 @@
-let a = document.querySelector('#a');
-let b = document.querySelector('#b');
+let editor = document.querySelector('#editor');
+let preview = document.querySelector('#preview');
 let meter = document.querySelector('#meter');
+let nbChars;
 
-let c = a.value.length;
+editor.addEventListener('input', function () {
+  preview.innerHTML = editor.value;
+  nbChars = editor.value.length;
+  meter.value = nbChars;
 
-a.addEventListener('input', function () {
-  b.innerHTML = a.value;
-
-  let toLimit = 200 - a.value.length;
+  let toLimit = 200 - nbChars;
   console.log(toLimit);
 });
