@@ -1,6 +1,8 @@
 const editor = document.querySelector(".editor");
 const preview = document.querySelector(".preview");
 
+const tagButtons = document.querySelectorAll(".tag-btn");
+
 const maxCharsInput = document.querySelector(".max-chars-input");
 
 const charsMeter = document.querySelector(".chars-meter");
@@ -57,7 +59,16 @@ function onEditorUpdate() {
   updatePreview();
 }
 
+function onTagButtonUpdate(ev) {
+  const tag = ev.target.value;
+  editor.value += `<${tag}><${tag}/>`;
+}
+
 editor.addEventListener("input", onEditorUpdate);
 maxCharsInput.addEventListener("input", onMaxCharsUpdate);
+
+for (const tagButton of tagButtons) {
+  tagButton.addEventListener("click", onTagButtonUpdate);
+}
 
 window.addEventListener("load", init);
