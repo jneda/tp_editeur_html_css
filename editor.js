@@ -35,9 +35,19 @@ function updateCountUI() {
   charsMeter.value = charsCount;
 }
 
+function updateMeterValues(maxChars) {
+  // calculate and update values for the meter colors to make sense
+  charsMeter.optimum = Math.floor(maxChars * 0.25);
+  charsMeter.low = Math.floor(maxChars * 0.5);
+  charsMeter.high = Math.floor(maxChars * 0.8);
+  charsMeter.max = maxChars;
+  // update editor's max chars count
+  editor.maxLength = maxChars;
+}
+
 function onMaxCharsUpdate() {
   maxChars = maxCharsInput.value;
-  charsMeter.max = maxChars;
+  updateMeterValues(maxChars);
   updateCountUI();
 }
 
