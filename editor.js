@@ -24,7 +24,8 @@ function updatePreview() {
 }
 
 function getTextCount() {
-  return editor.value.replace(/<.*?>|<.*/gms, '').length;
+  // return editor.value.replace(/<.*?>|<.*/gms, '').length;
+  return preview.textContent.length;
 }
 
 function updateCountUI() {
