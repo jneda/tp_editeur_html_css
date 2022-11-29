@@ -18,14 +18,16 @@ function init() {
   onEditorUpdate();
 }
 
-function updatePreview() {  
-  // update preview
+function updatePreview() { 
   preview.innerHTML = editor.value;
 }
 
 function getTextCount() {
-  // return editor.value.replace(/<.*?>|<.*/gms, '').length;
-  return preview.textContent.length;
+  // use a regex not to count chars in tags
+  return editor.value.replace(/<.*?>|<.*/gms, '').length;
+  
+  /* // count chars of preview text content instead ?
+  return preview.textContent.length; */
 }
 
 function updateCountUI() {
